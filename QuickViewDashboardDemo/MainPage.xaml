@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="QuickViewDashboardDemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400" 
+             xmlns:my="clr-namespace:ComponentArt.Silverlight.DataVisualization.Common;assembly=ComponentArt.Silverlight.DataVisualization.Common" 
+             xmlns:my1="clr-namespace:ComponentArt.Silverlight.DataVisualization.TimeNavigator;assembly=ComponentArt.Silverlight.DataVisualization.TimeNavigator" 
+             xmlns:my2="clr-namespace:ComponentArt.Silverlight.DataVisualization.Charting;assembly=ComponentArt.Silverlight.DataVisualization.Charting" 
+             xmlns:my3="clr-namespace:ComponentArt.Silverlight.DataVisualization.Utils;assembly=ComponentArt.Silverlight.DataVisualization.Common" 
+             xmlns:dvCm="clr-namespace:ComponentArt.Silverlight.DataVisualization.Common;assembly=ComponentArt.Silverlight.DataVisualization.Common" 
+             Loaded="UserControl_Loaded" xmlns:my4="clr-namespace:ComponentArt.Silverlight.DataVisualization.DataGrids;assembly=ComponentArt.Silverlight.DataVisualization.DataGrids">
+
+    <Grid x:Name="LayoutRoot" Background="White">
+        <my:DashboardLayout Theme="ArcticWhite" Palette="Breeze" SubTitle="subtitle" Title="Title" IsTabStop="False" ThemeVariant="Standard">
+            <Grid ShowGridLines="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="650" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="504" />
+                </Grid.ColumnDefinitions>
+                <my:DashboardPanel Title="TimeNav" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <my1:TimeNavigator Name="TimeNav" 
+                            EnableZoomOnDoubleClick="True"
+                            StartTime="{Binding StartTime}" 
+                            EndTime="{Binding EndTime}"
+                            ViewportStartTime="{Binding StartTime}" 
+                            ViewportEndTime="{Binding EndTime}"
+                            SelectedStartTime="{Binding SelectedStartTime, Mode=TwoWay}" 
+                            SelectedEndTime="{Binding SelectedEndTime, Mode=TwoWay}">
+                        <my1:TimeNavigator.TimeContext>
+                            <dvCm:TimeContext Levels="Decade, Year, Month, Day, Hour" />
+                        </my1:TimeNavigator.TimeContext> 
+                        <my2:XYChart Grid.Row="0"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="2"
+                                     XPath="Date"
+                                     DataSource="{Binding DataPoints}"
+                                     Is3D="False"
+                                     InnerMargins="0"
+                                     DefaultGridLinesVisible="False"
+                                     HorizontalAlignment="Stretch"
+                                     DefaultCoordinateSystemFrameVisible="False"
+                                     DefaultAxisAnnotationsVisible="False"
+                                     EnableDataPointPopup="False"
+                                     EnableDataPointSelectionOnMouseClick="False"
+                                     EnableAnimation="True"
+                                     EnableSeriesSelectionOnMouseClick="False"
+                                     HighlightDataPointOnHover="False"
+                                     HighlightXCoordinateOnHover="False"
+                                     DefaultStripesVisible="False"
+                                     XRangeStart="{Binding ViewportStartTime, ElementName=TimeNav}"
+                                     XRangeEnd="{Binding ViewportEndTime, ElementName=TimeNav}"
+                                     Palette="Breeze">
+                            <my2:XYChart.YAxis>
+                                <my2:Axis Id="YAxis" UseReferenceValue="False" UseOnlyVisiblePointsToComputeRange="True"/>
+                            </my2:XYChart.YAxis>
+                            <my2:LineSeries Id="LineSeries1"
+                                            YPath="Y"
+                                            Thickness="3"
+                                            ScalingType="ScaleByArea"
+
+                                 />
+                            </my2:XYChart>
+                    </my1:TimeNavigator>
+                </my:DashboardPanel>
+                <my:DashboardPanel Title="XYChart" Theme="ArcticWhite" Palette="Breeze" Grid.Row="1" Grid.Column="0">
+                    <my2:XYChart XPath="Date" Theme="ArcticWhite" Palette="Breeze"
+                                    DefaultGridLinesVisible="True"
+                                    DataSource="{Binding DataPoints}"
+                                    XRangeStart="{Binding SelectedStartTime}"
+                                    XRangeEnd="{Binding SelectedEndTime}"
+                                    DefaultCoordinateSystemFrameVisible="True"
+                                    EnableDataPointPopup="True"
+                                    EnableAnimation="True"
+                                    EnableShadows="True"
+                                    >
+                        <my2:XYChart.YAxis>
+                            <my2:Axis Id="YAxis" UseReferenceValue="False" UseOnlyVisiblePointsToComputeRange="True" />
+                        </my2:XYChart.YAxis>
+                        <my2:LineSeries Id="LineSeries2"
+                                     YPath="Y"
+                                     LineKind="Auto"
+                                     DoubleLine="True"
+                                     Thickness="2"
+                                     ScalingType="ScaleByArea"
+                                     >
+                        </my2:LineSeries>
+                        <my2:SeriesTracker SeriesId="LineSeries2" />
+                        <my2:SeriesAnnotationTracker SeriesIdsCSS="LineSeries2" />
+                        <my2:ZoomRectangle />
+                    </my2:XYChart>
+                </my:DashboardPanel>
+                <my:DashboardPanel Title="GridView" Theme="ArcticWhite" Palette="Breeze" ThemeVariant="Accent" Grid.Row="1" Grid.Column="1"
+                                   IsContentLoaded="True">
+                    <my4:GridView Name="GridView1"
+                                  ThemeVariant="Accent" 
+                                  AutoGenerateColumns="True" 
+                                  AllowPaging="true" 
+                                  PagerMode="ButtonsAndSlider" 
+                                  SelectionMode="MultipleRows" 
+                                  ShowSelectorCells="True"
+                                  ItemsSource="{Binding DataPoints}">
+                    </my4:GridView>
+                </my:DashboardPanel>
+            </Grid>
+        </my:DashboardLayout>
+    </Grid>
+</UserControl>

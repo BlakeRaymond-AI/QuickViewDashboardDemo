@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickViewDashboardDemo", "QuickViewDashboardDemo\QuickViewDashboardDemo.csproj", "{1ED0BF7E-DA10-4D62-8C74-2E9A57CC8A26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickViewDashboardDemo.Web", "QuickViewDashboardDemo.Web\QuickViewDashboardDemo.Web.csproj", "{E2018515-2C83-4650-BA50-ABD6C7E276FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1ED0BF7E-DA10-4D62-8C74-2E9A57CC8A26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED0BF7E-DA10-4D62-8C74-2E9A57CC8A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED0BF7E-DA10-4D62-8C74-2E9A57CC8A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED0BF7E-DA10-4D62-8C74-2E9A57CC8A26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2018515-2C83-4650-BA50-ABD6C7E276FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2018515-2C83-4650-BA50-ABD6C7E276FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2018515-2C83-4650-BA50-ABD6C7E276FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2018515-2C83-4650-BA50-ABD6C7E276FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
